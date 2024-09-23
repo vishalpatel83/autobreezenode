@@ -94,7 +94,7 @@ export class CarController {
 
         // Insert the data into the database
         const result = await db.execute(
-          "INSERT INTO car (title, category, daily_price ,weekly_price ,monthly_price ,img, section1_title, section1_description, section1_images, section2_title, section2_description, section2_images, key_features, key_feature_img,capacity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)",
+          "INSERT INTO car (title, category, daily_price ,weekly_price ,monthly_price ,img, section1_title, section1_description, section1_images, section2_title, section2_description, section2_images, key_features, key_feature_img,capacity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)",
           [
             title, // car title
             category, // car category
