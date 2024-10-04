@@ -5,11 +5,12 @@ export class RentalController {
 
   static async bookRental(req, res) {
     const {
+      user_id,
       book_periods,
-      from_date,
-      to_date,
-      pickup_time,
-      drop_off_time,
+      book_date_from,
+      book_date_to,
+      book_pick_time,
+      book_drop_time,
       car_id,
       delivery,
       address,
@@ -18,13 +19,14 @@ export class RentalController {
 
     try {
       const result = await db.execute(
-        "INSERT INTO car_rental_bookings (book_periods, from_date, to_date, pickup_time, drop_off_time, car_id, delivery, address, amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO booking (user_id,book_periods, book_date_from, book_date_to, book_pick_time, book_drop_time, car_id, delivery, address, amount) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [
+          user_id,
           book_periods,
-          from_date ?? "",
-          to_date ?? "",
-          pickup_time,
-          drop_off_time,
+          book_date_from ?? "",
+          book_date_to ?? "",
+          book_pick_time,
+          book_drop_time,
           car_id,
           delivery,
           address,
@@ -43,7 +45,7 @@ export class RentalController {
       const { car_id, from_date, to_date, pickup_time, drop_off_time } =
         req.body;
       const query = `
-    SELECT * FROM bookings
+    SELECT * FROM booking
     WHERE car_id = ?
     AND (
       (from_date BETWEEN ? AND ? OR to_date BETWEEN ? AND ?)
@@ -135,7 +137,7 @@ export class RentalController {
     const userId = req.params.userId;
 
     try {
-      const [results] = await db.execute('CALL GetUserRentalHistory(?)', [userId]);
+      const [results] = await db.execute('CALL getUserBookingHistory(?)', [userId]);
   
       if (results.length > 0) {
         const data = new ResultModal({ history: results[0] }, "", 200, true, "");
