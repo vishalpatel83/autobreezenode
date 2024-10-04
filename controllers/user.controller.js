@@ -64,11 +64,11 @@ export const signUpUser = async (req, res) => {
     const data = new ResultModal(
       "",
       "User created successfully",
-      201,
+      200,
       true,
       ""
     );
-    return res.status(201).json(data);
+    return res.status(200).json(data);
   });
 };
 
@@ -109,7 +109,7 @@ export const signIn = async (req, res) => {
     const data = new ResultModal(
       results[0],
       "Login successfully",
-      201,
+      200,
       true,
       ""
     );

@@ -115,7 +115,7 @@ export class CarController {
         );
 
         // Return success response
-        res.status(201).json({
+        res.status(200).json({
           result,
         });
       } catch (error) {

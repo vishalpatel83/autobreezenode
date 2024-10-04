@@ -32,7 +32,7 @@ export class RentalController {
         ]
       );
       const insertResult = result[0];
-      res.status(201).json({ message: "Booking created", result });
+      res.status(200).json({ message: "Booking created", result });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
