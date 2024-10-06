@@ -119,6 +119,7 @@ export const signIn = async (req, res) => {
 
 export const updateUser = (req, res) => {
   try {
+    console.log(req)
     const userId = req.params.userId;
     let drivingLicenseFilePath;
     upload(req, res, (err) => {
@@ -143,7 +144,6 @@ export const updateUser = (req, res) => {
         pin_code,
         dl_number,
         passport_number,
-        user_img//new
       } = req.body;
       // Check if file is uploaded and prepare file path
 
@@ -165,7 +165,6 @@ export const updateUser = (req, res) => {
                 dl_number = ?, 
                 passport_number = ?, 
                 driving_license_file = ?
-                user_img=?
             WHERE user_id = ?`;
 console.log("drivingLicenseFilePath",drivingLicenseFilePath)
       const values = [
@@ -183,7 +182,6 @@ console.log("drivingLicenseFilePath",drivingLicenseFilePath)
         passport_number,
         drivingLicenseFilePath,
         userId,
-        user_img//new
       ];
 
       db.query(sql, values, (err, result) => {

@@ -4,7 +4,7 @@ import { RentalController } from "../controllers/rentalbook.controller.js";
 const router=express.Router();
 router.post("/bookrental",RentalController.bookRental);
 router.post("/liveBookings",RentalController.getLiveBookings);
-router.post("/pastBookings",RentalController.getHistoryOfRentals);
+router.post("/pastBookings",RentalController.getPastBookings);
 router.post("/checkCarAvailability",RentalController.checkCarAvailability);
 
 
